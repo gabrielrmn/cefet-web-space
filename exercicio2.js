@@ -1,7 +1,8 @@
 // Faça o exercício da GALERIA DE IMAGENS aqui
 // Este arquivo AINDA NÃO ESTÁ INCLUÍDO no arquivo HTML
 
-const servidorDasImagens = 'https://fegemo.github.io/cefet-web/images/osiris';
+let index = 0;
+const servidorDasImagens = 'https://fegemo.github.io/cefet-web/images/osiris/';
 const imagens = [
     {
       arquivo: 'modelo-artistico-da-sonda.webp',
@@ -48,3 +49,26 @@ const imagens = [
     }
   ];
 
+let botaoAnterior = document.querySelector('#anterior');
+let botaoProximo = document.querySelector('#proximo');
+let slide = document.querySelector('#slide');
+
+botaoAnterior.addEventListener('click', function() {
+  if(index === 0)
+    index = imagens.length - 1;
+  else
+    index-=1;
+
+  slide.src = servidorDasImagens + imagens[index].arquivo;
+  slide.alt = imagens[index].descricao;
+});
+
+botaoProximo.addEventListener('click', function() {
+  if(index === imagens.length - 1)
+    index = 0;
+  else
+    index+=1;
+
+  slide.src = servidorDasImagens + imagens[index].arquivo;
+  slide.alt = imagens[index].descricao;
+});
